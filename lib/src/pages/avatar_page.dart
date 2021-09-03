@@ -45,18 +45,21 @@ class _AvatarPageState extends State<AvatarPage> {
 
   Widget _createInput() {
     return TextField(
-      textCapitalization: TextCapitalization.sentences,
+      autofocus: true,
+      textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
           counter: Text("Letters: ${_name.length}"),
           hintText: "Name of the person",
           labelText: "Name",
           helperText: "Just type your name",
+          icon: Icon(Icons.person, color: Colors.green[400]),
           suffix: Icon(
             Icons.verified,
             color: Colors.blue,
           ),
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(20.0))),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          )),
       onChanged: (text) {
         setState(() {
           _name = text;
