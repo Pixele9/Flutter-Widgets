@@ -9,6 +9,8 @@ class AvatarPage extends StatefulWidget {
 
 class _AvatarPageState extends State<AvatarPage> {
   String _name = "";
+  String _email = "";
+  String _password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,12 @@ class _AvatarPageState extends State<AvatarPage> {
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
         children: <Widget>[
           _createInput(),
+          Divider(),
+          _createEmailFields(),
+          Divider(),
+          _createPasswordFields(),
+          Divider(),
+          _showValues(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -65,6 +73,63 @@ class _AvatarPageState extends State<AvatarPage> {
           _name = text;
         });
       },
+    );
+  }
+
+  Widget _createEmailFields() {
+    return TextField(
+      // obscureText: true,
+      decoration: InputDecoration(
+          hintText: "Email",
+          labelText: "Email",
+          helperText: "Enter a secure email",
+          suffix: Icon(
+            Icons.email_outlined,
+            color: Colors.blue,
+          ),
+          icon: Icon(
+            Icons.email,
+            color: Colors.green[400],
+          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
+      onChanged: (text) {
+        setState(() {
+          _email = text;
+          print(_email);
+        });
+      },
+    );
+  }
+
+  Widget _createPasswordFields() {
+    return TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+          hintText: "Password",
+          labelText: "Password",
+          helperText: "Enter a secure password",
+          suffix: Icon(
+            Icons.password,
+            color: Colors.blue,
+          ),
+          icon: Icon(
+            Icons.lock_open,
+            color: Colors.green[400],
+          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
+      onChanged: (text) {
+        setState(() {
+          _password = text;
+          print(_password);
+        });
+      },
+    );
+  }
+
+  Widget _showValues() {
+    return ListTile(
+      title: Text("Name: $_name \nEmail: $_email"),
+      subtitle: Text("Password: $_email"),
     );
   }
 }
